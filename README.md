@@ -1,4 +1,4 @@
-# react-easy-modal
+# react-smart-modal
 
 Plug-and-play React (portal, hooks and context API) based very elegant, fast and minimal modal.
 
