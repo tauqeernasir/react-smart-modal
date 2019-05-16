@@ -74,33 +74,31 @@ function App() {
 
 // in MyModal.jsx
 
-const MyModal = () => {
-  return (
-    <Modal width="80%" roundCorners>
-      <ModalHeader closeButton>Add you personal information below</ModalHeader>
-      <ModalBody>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <input style={{ padding: "10px", width: "350px" }} placeholder="Name" />
-        <br />
-        <input style={{ padding: "10px", width: "350px" }} placeholder="Age" />
-      </ModalBody>
-      <ModalFooter>
-        <div>
-          <button
-            style={{ padding: "10px", float: "right" }}
-            onClick={() => alert("Adding info")}
-          >
-            Add Info
-          </button>
-          <button style={{ padding: "10px" }}>Cancel</button>
-        </div>
-      </ModalFooter>
-    </Modal>
-  );
-};
+const MyModal = (
+  <Modal width="80%" roundCorners>
+    <ModalHeader closeButton>Add you personal information below</ModalHeader>
+    <ModalBody>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <input style={{ padding: "10px", width: "350px" }} placeholder="Name" />
+      <br />
+      <input style={{ padding: "10px", width: "350px" }} placeholder="Age" />
+    </ModalBody>
+    <ModalFooter>
+      <div>
+        <button
+          style={{ padding: "10px", float: "right" }}
+          onClick={() => alert("Adding info")}
+        >
+          Add Info
+        </button>
+        <button style={{ padding: "10px" }}>Cancel</button>
+      </div>
+    </ModalFooter>
+  </Modal>
+);
 
 export default MyModal;
 ```
