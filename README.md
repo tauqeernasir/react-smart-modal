@@ -1,68 +1,139 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-easy-modal
 
-## Available Scripts
+Plug-and-play React (portal, hooks and context API) based very elegant, fast and minimal modal.
 
-In the project directory, you can run:
+# Summary
 
-### `npm start`
+This package uses `Context API` for managing state of modal. It provides access to modal from anywhere in the app using `Provider` and `Consumer`. Just wrap your app with `ModalProvider` and access `isOpen: Boolean, openModal: Function, closeModal: Function` using `ModalConsumer` and manage modals easily.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Additionally, this package also provides `Modal, ModalHeader, ModalBody and ModalFooter` React Components. You can use these components to create your modals. But it's completely optional, you can also pass your own custom built modal components as well.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+NOTE: Custom modals will not support any default styles, you'll need to do that yourself.
+```
 
-### `npm test`
+# Installation
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# using node package manager
+$ npm install --save react-easy-modal
 
-### `npm run build`
+# using yarn package manager
+$ yarn add react-easy-modal
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Usage
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Add another root element beside your `root` or `app` element and name it `'portal'`. It will be used by the portal to insert modal in tree. See an example below
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+<div id='app'></div>
+<div id='portal'></div>
+```
 
-### `npm run eject`
+Once done, follow the rest of the guide.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```jsx
+import React from "react";
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+import {
+  ModalProvider,
+  ModalConsumer,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  Modal
+} from "react-easy-modal";
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+import MyModal from "./MyModal";
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+function App() {
+  return (
+    <ModalProvider>
+      <div className="App">
+        <h3>Some app content</h3>
 
-## Learn More
+        <ModalConsumer>
+          {({ isOpen, openModal, closeModal }) => {
+            return (
+              <button
+                onClick={() => {
+                  isOpen && closeModal();
+                  !isOpen && openModal(MyModel);
+                }}
+              >
+                {isOpen ? "Close Modal" : "Open Modal"}
+              </button>
+            );
+          }}
+        </ModalConsumer>
+      </div>
+    </ModalProvider>
+  );
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+// in MyModal.jsx
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const MyModal = () => {
+  return (
+    <Modal width="80%" roundCorners>
+      <ModalHeader closeButton>Add you personal information below</ModalHeader>
+      <ModalBody>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <input style={{ padding: "10px", width: "350px" }} placeholder="Name" />
+        <br />
+        <input style={{ padding: "10px", width: "350px" }} placeholder="Age" />
+      </ModalBody>
+      <ModalFooter>
+        <div>
+          <button
+            style={{ padding: "10px", float: "right" }}
+            onClick={() => alert("Adding info")}
+          >
+            Add Info
+          </button>
+          <button style={{ padding: "10px" }}>Cancel</button>
+        </div>
+      </ModalFooter>
+    </Modal>
+  );
+};
 
-### Code Splitting
+export default MyModal;
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# Modal Customization
 
-### Analyzing the Bundle Size
+If you choose to use provided `Modal` by this package. You can customize it in various ways.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## &lt;Modal /&gt;
 
-### Making a Progressive Web App
+| props        |            type             | default |
+| ------------ | :-------------------------: | ------: |
+| width        | css compatible (e.g. px, %) |     60% |
+| height       | css compatible (e.g. px, %) |   400px |
+| roundCorners |           boolean           |   false |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## &lt;ModalHeader /&gt;
 
-### Advanced Configuration
+| props     |                 type                  | default |
+| --------- | :-----------------------------------: | ------: |
+| bg        | css compatible color (e.g hex or rbg) |   white |
+| textColor | css compatible color (e.g hex or rbg) |   Black |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## &lt;ModalFooter /&gt;
 
-### Deployment
+| props |                 type                  | default |
+| ----- | :-----------------------------------: | ------: |
+| bg    | css compatible color (e.g hex or rbg) |   white |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## &lt;ModalBody /&gt;
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+| props    |                 type                  | default |
+| -------- | :-----------------------------------: | ------: |
+| bg       | css compatible color (e.g hex or rbg) |   white |
+| padding  |      css compatible (e.g. px, %)      |    20px |
+| overflow |         css compatible value          |    auto |
