@@ -2,6 +2,10 @@
 
 Plug-and-play React (portal, hooks and context API) based very elegant, fast and minimal modal.
 
+# Screenshot
+
+![](https://user-images.githubusercontent.com/43640384/57883831-c7fd0a00-7840-11e9-9b9b-572048517373.png)
+
 # Summary
 
 This package uses `Context API` for managing state of modal. It provides access to modal from anywhere in the app using `Provider` and `Consumer`. Just wrap your app with `ModalProvider` and access `isOpen: Boolean, openModal: Function, closeModal: Function` using `ModalConsumer` and manage modals easily.
