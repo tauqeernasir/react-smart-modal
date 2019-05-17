@@ -20,10 +20,10 @@ NOTE: Custom modals will not support any default styles, you'll need to do that 
 
 ```bash
 # using node package manager
-$ npm install --save react-easy-modal
+$ npm install --save react-smart-modal
 
 # using yarn package manager
-$ yarn add react-easy-modal
+$ yarn add react-smart-modal
 ```
 
 # Usage
@@ -47,7 +47,7 @@ import {
   ModalFooter,
   ModalBody,
   Modal
-} from "react-easy-modal";
+} from "react-smart-modal";
 
 import MyModal from "./MyModal";
 
